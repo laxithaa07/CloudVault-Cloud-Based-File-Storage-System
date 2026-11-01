@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}CloudVault{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}">☁ CloudVault</a>
+  {% if session.get('user_id') %}
+    <div class="user-area"><span>{{ session.get('username') }}</span>
+      <form method="post" action="{{ url_for('logout') }}"><button class="link-button">Log out</button></form>
+    </div>
+  {% else %}
+    <nav><a href="{{ url_for('login') }}">Sign in</a><a href="{{ url_for('register') }}">Create account</a></nav>
+  {% endif %}
+</header>
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}<section class="messages">{% for category, message in messages %}
+      <div class="message {{ category }}">{{ message }}</div>
+    {% endfor %}</section>{% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer>CloudVault · Cloud file storage demo project</footer>
+</body>
+</html>

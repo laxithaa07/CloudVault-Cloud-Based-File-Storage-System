@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}CloudVault - Secure file storage{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="eyebrow">CLOUD COMPUTING MINI PROJECT</div>
+  <h1>Your files, organised in one place.</h1>
+  <p>Upload, store, download and manage files through a simple cloud-ready web application.</p>
+  <div class="actions"><a class="button" href="{{ url_for('register') }}">Get started</a><a class="button secondary" href="{{ url_for('login') }}">Sign in</a></div>
+  <p class="hint">Maximum upload: {{ max_upload_mb }} MB per file.</p>
+</section>
+<section class="features">
+  <article><h3>🔐 Private accounts</h3><p>Each user can access only their own uploaded files.</p></article>
+  <article><h3>☁ File storage</h3><p>Upload and manage files from a browser.</p></article>
+  <article><h3>📊 Storage overview</h3><p>See your file count and total stored size.</p></article>
+</section>
+{% endblock %}
